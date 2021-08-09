@@ -7,6 +7,7 @@
   let tiempoenfermedad = 100;
   let gp5 = {};
   let terminado = false;
+  let modozombie = true;
 
   let personas = [];
 
@@ -49,8 +50,15 @@
         if (this.p5.random(1, 100) <= mortalidad) {
           this.estado = "muerto";
           this.movible = false;
+          if (modozombie) {
+            this.movible = true;
+          }
         } else {
           this.estado = "recuperado";
+          if (modozombie) {
+            this.estado = "muerto";
+            this.movible = true;
+          }
         }
       }
 
@@ -86,6 +94,13 @@
         if (this.estado == "enfermo" || p.estado == "enfermo") {
           this.contagiado();
         }
+
+        if (modozombie) {
+          if (this.estado == "muerto" || p.estado == "muerto") {
+            this.contagiado();
+          }
+        }
+
         this.vel.rotate(this.p5.random(this.p5.HALF_PI));
       }
     }
@@ -207,50 +222,57 @@
 
   {#if terminado}
     <div id="panel">
-      <label>
-        Población: <br /><input
-          type="range"
-          min="50"
-          max="400"
-          step="1"
-          bind:value={poblacion}
-        />
-        {poblacion} Personas
-      </label>
+      <div id="rangos">
+        <label>
+          Población: <br /><input
+            type="range"
+            min="50"
+            max="400"
+            step="1"
+            bind:value={poblacion}
+          /><br />
+          {poblacion} Personas
+        </label>
 
-      <label>
-        En Cuarentena: <br />
-        <input
-          type="range"
-          min="0"
-          max="90"
-          step="1"
-          bind:value={encuarentena}
-        />
-        {encuarentena} %
-      </label>
-      <label>
-        Mortalidad: <br />
-        <input
-          type="range"
-          min="0"
-          max="100"
-          step="1"
-          bind:value={mortalidad}
-        />
-        {mortalidad} %
-      </label>
-      <label>
-        Tiempo Enfermo: <br />
-        <input
-          type="range"
-          min="100"
-          max="1000"
-          step="1"
-          bind:value={tiempoenfermedad}
-        />
-        {tiempoenfermedad} ciclos
-      </label>
+        <label>
+          En Cuarentena: <br />
+          <input
+            type="range"
+            min="0"
+            max="90"
+            step="1"
+            bind:value={encuarentena}
+          /><br />
+          {encuarentena} %
+        </label>
+        <label>
+          Mortalidad: <br />
+          <input
+            type="range"
+            min="0"
+            max="100"
+            step="1"
+            bind:value={mortalidad}
+          /><br />
+          {mortalidad} %
+        </label>
+        <label>
+          Tiempo Enfermo: <br />
+          <input
+            type="range"
+            min="100"
+            max="1000"
+            step="1"
+            bind:value={tiempoenfermedad}
+          /><br />
+          {tiempoenfermedad} ciclos
+        </label>
+
+        <label>
+          <input type="checkbox" bind:checked={modozombie} />
+          modo zombie
+        </label>
+      </div>
       <button
         id="btnReinicia"
         on:click={() => {
@@ -259,11 +281,14 @@
       >
     </div>
   {:else}
-    <div class="numeralia">
+    <div class="numeralia numeralia2">
       <span>Población: <strong>{poblacion} personas</strong></span>
       <span>En cuarentena: <strong>{encuarentena} %</strong></span>
       <span>Mortalidad: <strong>{mortalidad} %</strong></span>
       <span> Tiempo Enfermo:: <strong>{tiempoenfermedad} ciclos</strong></span>
+      {#if modozombie}
+        <span><strong>Modo Zombie Activo</strong></span>
+      {/if}
     </div>
   {/if}
 </div>
@@ -274,23 +299,43 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #001219;
+    padding: 10px;
+    border-radius: 15px;
   }
 
   #panel {
     display: flex;
     width: 800px;
     justify-content: space-between;
-    background-color: yellow;
+    background-color: #e63946;
     padding: 10px;
-    border: 1px solid red;
+    border: 1px solid #fb8500;
     border-radius: 10px;
     font-size: x-small;
     margin-top: 20px;
+    color: lightyellow;
   }
 
-  #panel input {
-    width: 80px;
+  #rangos {
+    display: flex;
+    justify-content: space-between;
   }
+
+  #panel label {
+    text-align: center;
+  }
+
+  #btnReinicia {
+    background-color: #fb8500;
+    color: lightyellow;
+    font-size: medium;
+    border-radius: 25px;
+  }
+
   .numeralia {
     display: flex;
     width: 800px;
@@ -298,17 +343,13 @@
     margin-top: 20px;
   }
   .numeralia span {
-    background-color: black;
-    color: white;
+    background-color: #001219;
+    color: #e9d8a6;
     padding: 5px;
-    border: 1px solid red;
     border-radius: 5px;
   }
 
-  #btnReinicia {
-    background-color: brown;
-    color: cyan;
-    font-size: large;
-    border-radius: 25px;
+  .numeralia2 {
+    font-size: smaller;
   }
 </style>
