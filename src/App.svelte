@@ -7,7 +7,7 @@
   let tiempoenfermedad = 100;
   let gp5 = {};
   let terminado = false;
-  let modozombie = true;
+  let modozombie = false;
 
   let personas = [];
 
