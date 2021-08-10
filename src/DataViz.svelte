@@ -10,11 +10,21 @@
     personas,
   } from "./Datos.js";
 
-  function checarColisiones() {
+  function checarColisionesyActualizaContadores() {
     const r = new Rectangle(400, 250, 800, 500);
     const capacity = 4;
     const quadtree = new QuadTree(r, capacity);
+
+    $contadores = {
+      enfermos: 0,
+      sanos: 0,
+      muertos: 0,
+      recuperados: 0,
+    };
+
     $personas.forEach(function (value1, i) {
+      value1.update();
+      $contadores[value1.estado + "s"]++;
       let p = new Point(value1.pos.x, value1.pos.y, value1);
       quadtree.insert(p);
     });
@@ -30,19 +40,7 @@
         }
       });
     });
-  }
 
-  function actualizaContadores() {
-    $contadores = {
-      enfermos: 0,
-      sanos: 0,
-      muertos: 0,
-      recuperados: 0,
-    };
-    $personas.forEach(function (value, index) {
-      value.update();
-      $contadores[value.estado + "s"]++;
-    });
     if ($contadores.enfermos == 0) {
       $terminado = true;
     }
@@ -72,8 +70,7 @@
       p5.fill("#EAEAEA");
       p5.rect(0, 0, p5.width, p5.height - 100);
 
-      checarColisiones();
-      actualizaContadores();
+      checarColisionesyActualizaContadores();
       mostrarChart();
     };
 

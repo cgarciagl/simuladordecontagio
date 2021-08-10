@@ -118,7 +118,7 @@
     display: flex;
     flex-direction: column;
     max-width: 800px;
-    width: 100%;
+    width: 95%;
     background-color: #e63946;
     padding: 10px;
     border: 1px solid #fb8500;
@@ -171,6 +171,14 @@
     #rangos,
     .numeralia {
       flex-direction: column;
+    }
+
+    #rangos label br {
+      display: none;
+    }
+
+    #rangos label input {
+      vertical-align: middle;
     }
   }
 </style>
