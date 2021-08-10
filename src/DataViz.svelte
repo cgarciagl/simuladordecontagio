@@ -76,7 +76,7 @@
 
     function mostrarChart() {
       let i = p5.frameCount % p5.width;
-      p5.strokeWeight(2);
+      p5.strokeWeight(3);
 
       let pob = $personas.length || 1;
 

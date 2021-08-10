@@ -123,7 +123,6 @@
     padding: 10px;
     border: 1px solid #fb8500;
     border-radius: 10px;
-    font-size: x-small;
     margin-top: 20px;
     color: lightyellow;
   }
@@ -135,6 +134,7 @@
 
   #panel label {
     text-align: center;
+    font-size: medium;
   }
 
   .clsmodozombie {
@@ -163,14 +163,14 @@
     border-radius: 5px;
   }
 
-  .numeralia2 {
-    font-size: smaller;
-  }
-
   @media (max-width: 800px) {
     #rangos,
     .numeralia {
       flex-direction: column;
+    }
+
+    #rangos label {
+      font-size: small;
     }
 
     #rangos label br {
