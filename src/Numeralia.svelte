@@ -40,7 +40,7 @@
 
 {#if $terminado}
   <div id="panel" transition:slide>
-    <h2>Simulación terminada</h2>
+    <h2>Simulación terminada 💻</h2>
     <div id="rangos">
       <label>
         Población: <br /><input
@@ -50,7 +50,7 @@
           step="1"
           bind:value={$poblacion}
         /><br />
-        {$poblacion} Personas
+        {$poblacion} Personas 👨‍👩‍👧‍👦
       </label>
 
       <label>
@@ -62,7 +62,7 @@
           step="1"
           bind:value={$encuarentena}
         /><br />
-        {$encuarentena} %
+        {$encuarentena} % 🏡
       </label>
       <label>
         Mortalidad: <br />
@@ -73,7 +73,7 @@
           step="1"
           bind:value={$mortalidad}
         /><br />
-        {$mortalidad} %
+        {$mortalidad} % ☠
       </label>
       <label>
         Tiempo Enfermo: <br />
@@ -84,12 +84,12 @@
           step="1"
           bind:value={$tiempoenfermedad}
         /><br />
-        {$tiempoenfermedad} ciclos
+        {$tiempoenfermedad} ciclos 🔁
       </label>
 
       <label class="clsmodozombie">
         <input type="checkbox" bind:checked={$modozombie} />
-        modo zombie
+        modo zombie 🧟‍♂️
       </label>
     </div>
     <button
@@ -101,12 +101,12 @@
   </div>
 {:else}
   <div class="numeralia numeralia2">
-    <span>Población: <strong>{$poblacion} personas</strong></span>
-    <span>En cuarentena: <strong>{$encuarentena} %</strong></span>
-    <span>Mortalidad: <strong>{$mortalidad} %</strong></span>
-    <span> Tiempo Enfermo:: <strong>{$tiempoenfermedad} ciclos</strong></span>
+    <span>Población: <strong>{$poblacion} personas 👨‍👨‍👧‍👦</strong></span>
+    <span>En cuarentena: <strong>{$encuarentena}% 🏡</strong></span>
+    <span>Mortalidad: <strong>{$mortalidad}% ☠</strong></span>
+    <span> Tiempo Enfermo: <strong>{$tiempoenfermedad} ciclos 🔁</strong></span>
     {#if $modozombie}
-      <span style="color:red;"><strong>Modo Zombie Activo</strong></span>
+      <span style="color:red;"><strong>Modo Zombie Activo 🧟‍♂️</strong></span>
     {/if}
   </div>
 {/if}

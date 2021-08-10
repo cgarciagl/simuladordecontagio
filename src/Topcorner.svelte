@@ -70,7 +70,7 @@
     right: 0;
     margin-top: 12px;
     margin-right: 12px;
-    width: 250px;
+    max-width: 250px;
     min-height: 25px;
     background-color: whitesmoke;
     color: black;
