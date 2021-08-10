@@ -1,6 +1,6 @@
 <script>
   import { slide } from "svelte/transition";
-  let muestra = true;
+  let muestra = false;
 </script>
 
 <div class="topcorner">

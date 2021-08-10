@@ -51,7 +51,9 @@
   const sketch = (p5) => {
     function Inicializa() {
       for (let i = 1; i <= $poblacion; i++) {
-        $personas.push(new Persona(p5.random(700), p5.random(390), p5));
+        $personas.push(
+          new Persona(p5.random(p5.width - 10), p5.random(390), p5)
+        );
       }
       $personas[0].estado = "enfermo";
       //ponemos personas en cuarentena..
@@ -79,20 +81,22 @@
       let i = p5.frameCount % p5.width;
       p5.strokeWeight(2);
 
+      let pob = $personas.length || 1;
+
       p5.stroke("orange");
-      let prop = ($contadores.enfermos / $poblacion) * 100;
+      let prop = ($contadores.enfermos / pob) * 100;
       let ult = p5.height - prop;
       p5.line(i, ult, i, p5.height);
       p5.stroke("cyan"); //lightblue
-      prop = ($contadores.recuperados / $poblacion) * 100;
+      prop = ($contadores.recuperados / pob) * 100;
       p5.line(i, ult - prop, i, ult);
       ult = ult - prop;
       p5.stroke("black"); //black
-      prop = ($contadores.muertos / $poblacion) * 100;
+      prop = ($contadores.muertos / pob) * 100;
       p5.line(i, ult - prop, i, ult);
       ult = ult - prop;
       p5.stroke("lime"); //lime
-      prop = ($contadores.sanos / $poblacion) * 100;
+      prop = ($contadores.sanos / pob) * 100;
       p5.line(i, ult - prop, i, ult);
       ult = ult - prop;
 
@@ -103,3 +107,6 @@
 </script>
 
 <P5 {sketch} />
+
+<style>
+</style>

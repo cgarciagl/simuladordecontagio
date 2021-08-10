@@ -24,4 +24,13 @@
     padding: 10px;
     border-radius: 15px;
   }
+
+  @media (max-width: 800px) {
+    #contenedor {
+      position: relative;
+      top: 0;
+      left: 0;
+      transform: translate(0, 0);
+    }
+  }
 </style>

@@ -19,7 +19,9 @@
         $personas.pop();
       }
       for (let i = 1; i <= $poblacion; i++) {
-        $personas.push(new Persona($gp5.random(700), $gp5.random(390), $gp5));
+        $personas.push(
+          new Persona($gp5.random($gp5.width - 10), $gp5.random(390), $gp5)
+        );
       }
       $personas[0].estado = "enfermo";
       //ponemos personas en cuarentena..
@@ -115,7 +117,8 @@
   #panel {
     display: flex;
     flex-direction: column;
-    width: 800px;
+    max-width: 800px;
+    width: 100%;
     background-color: #e63946;
     padding: 10px;
     border: 1px solid #fb8500;
@@ -148,7 +151,8 @@
 
   .numeralia {
     display: flex;
-    width: 800px;
+    max-width: 800px;
+    width: 100%;
     justify-content: space-between;
     margin-top: 20px;
   }
@@ -161,5 +165,12 @@
 
   .numeralia2 {
     font-size: smaller;
+  }
+
+  @media (max-width: 800px) {
+    #rangos,
+    .numeralia {
+      flex-direction: column;
+    }
   }
 </style>
