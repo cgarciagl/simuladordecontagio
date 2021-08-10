@@ -1,4 +1,5 @@
 <script>
+  import { fade } from "svelte/transition";
   import P5 from "p5-svelte";
 
   let poblacion = 200;
@@ -221,7 +222,8 @@
   </div>
 
   {#if terminado}
-    <div id="panel">
+    <div id="panel" transition:fade>
+      <h2>Simulación terminada</h2>
       <div id="rangos">
         <label>
           Población: <br /><input
@@ -268,7 +270,7 @@
           {tiempoenfermedad} ciclos
         </label>
 
-        <label>
+        <label class="clsmodozombie">
           <input type="checkbox" bind:checked={modozombie} />
           modo zombie
         </label>
@@ -287,13 +289,82 @@
       <span>Mortalidad: <strong>{mortalidad} %</strong></span>
       <span> Tiempo Enfermo:: <strong>{tiempoenfermedad} ciclos</strong></span>
       {#if modozombie}
-        <span><strong>Modo Zombie Activo</strong></span>
+        <span style="color:red;"><strong>Modo Zombie Activo</strong></span>
       {/if}
     </div>
   {/if}
 </div>
 
+<div class="topcorner">
+  <h2>Simulador de contagios</h2>
+  <p>
+    En cada simulación se puede seleccionar: la población de individuos, el
+    porcentaje de estos que se mantendrán en cuarentena (no se moverán), la tasa
+    de mortalidad de la enfermedad y el tiempo que se mantendrán enfermos los
+    individuos antes de recuperarse o morir
+  </p>
+
+  <h3>Código de colores:</h3>
+  <div class="spans">
+    <span>
+      <div class="circulo" style="background-color:lime" />
+      Sanos
+    </span>
+    <span>
+      <div class="circulo" style="background-color:orange" />
+      Enfermos
+    </span>
+    <span>
+      <div class="circulo" style="background-color:cyan" />
+      Recuperados &nbsp;<span style="font-size:x-small">
+        (enfermaron y sobrevivieron)</span
+      >
+    </span>
+    <span>
+      <div class="circulo" style="background-color:black" />
+      Muertos
+    </span>
+  </div>
+  <h4>
+    En el modo zombie los muertos se mueven y contagian a otros individuos
+  </h4>
+</div>
+
 <style>
+  .circulo {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid;
+    display: inline-block;
+  }
+
+  .topcorner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 12px;
+    margin-right: 12px;
+    width: 250px;
+    min-height: 250px;
+    background-color: whitesmoke;
+    color: black;
+    border: 2px solid tomato;
+    border-radius: 25px;
+    padding: 15px;
+    text-align: justify;
+  }
+
+  .spans {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .topcorner h2,
+  h3 {
+    text-align: center;
+  }
+
   #contenedor {
     position: fixed;
     top: 50%;
@@ -309,8 +380,8 @@
 
   #panel {
     display: flex;
+    flex-direction: column;
     width: 800px;
-    justify-content: space-between;
     background-color: #e63946;
     padding: 10px;
     border: 1px solid #fb8500;
@@ -329,11 +400,16 @@
     text-align: center;
   }
 
+  .clsmodozombie {
+    padding-top: 20px;
+  }
+
   #btnReinicia {
     background-color: #fb8500;
     color: lightyellow;
     font-size: medium;
     border-radius: 25px;
+    margin-top: 15px;
   }
 
   .numeralia {
