@@ -163,6 +163,23 @@
     border-radius: 5px;
   }
 
+  button {
+    font-family: inherit;
+    font-size: inherit;
+    -webkit-padding: 0.4em 0;
+    padding: 0.4em;
+    margin: 0 0 0.5em 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+  }
+
+  button {
+    color: #333;
+    background-color: #f4f4f4;
+    outline: none;
+  }
+
   @media (max-width: 800px) {
     #rangos,
     .numeralia {
