@@ -104,6 +104,3 @@
 </script>
 
 <P5 {sketch} />
-
-<style>
-</style>
