@@ -39,22 +39,26 @@ export class Persona {
       this.estado == "enfermo" &&
       this.tiempoenfermo > get(tiempoenfermedad)
     ) {
-      if (this.p5.random(1, 100) <= get(mortalidad)) {
-        this.estado = "muerto";
-        this.movible = false;
-        if (get(modozombie)) {
-          this.movible = true;
-        }
-      } else {
-        this.estado = "recuperado";
-        if (get(modozombie)) {
-          this.estado = "muerto";
-          this.movible = true;
-        }
-      }
+      this.muerto();
     }
 
     this.dibuja();
+  }
+
+  muerto() {
+    if (this.p5.random(1, 100) <= get(mortalidad)) {
+      this.estado = "muerto";
+      this.movible = false;
+      if (get(modozombie)) {
+        this.movible = true;
+      }
+    } else {
+      this.estado = "recuperado";
+      if (get(modozombie)) {
+        this.estado = "muerto";
+        this.movible = true;
+      }
+    }
   }
 
   rebotarConParedes() {
