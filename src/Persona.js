@@ -59,6 +59,7 @@ export class Persona {
         this.movible = true;
       }
     }
+    this.vel.div(5);
   }
 
   rebotarConParedes() {
